@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <title>AngularJS First Example</title>
+</head>
+<body ng-app="myapp">
+
+    <div ng-controller="HelloController" >  
+        <h2>Hello {{helloTo.title}} !</h2>  
+        <div wandas-directive></div>
+    </div> 
+    <hr>
+    <!--wo way data binding gives you the ability to essentially treat the model as the single-source-of-truth in your application.-->
+    <!--<div ng-app="" ng-init="firstName='Wanda';myCol='pink'">-->  
+    <div ng-init="firstName='Wanda';myCol='pink'">  
+        <!--You can't reall use angularjs data binding on a style tag directly-->
+        <p>Color: <input type="text" ng-model="myCol" placeholder="Enter a color value"></p>
+        <!--<p style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">Input something in the input box:</p>-->  
+        <p ng-style="{'background-color': myCol}">Input something in the input box:</p> 
+        <p>Name: <input type="text" ng-model="firstName" ></p>  
+        <p>You wrote: {{ firstName }}</p>  
+    </div> 
+    <hr>
+    <div data-ng-app="" data-ng-init="quantity=1;price=20">  
+        <h2>Cost Calculator</h2>  
+        Quantity: <input type="number" ng-model="quantity">  
+        Price: <input type="number" ng-model="price">  
+        <p><b>Total in rands:</b> {{quantity * price}}</p>  
+    </div> 
+    <!--The ng-app directive is very important. If you remove the directive "ng-app", HTML will display the expression without solving it.--> 
+    <div ng-app>  
+        <p>A simple expression example: 1 + 1 = {{ 1 + 1 }}</p>  
+    </div> 
+    <hr>
+    <div ng-app="" ng-init="firstName='Wanda';lastName='Drizzle'; person={firstName:'Wanda',lastName:'Drizzle'}">  
+        <p>My full name is: <span ng-bind="firstName + ' ' + lastName"></span></p> 
+        <p>Hi, {{person.firstName}}</p> 
+    </div>
+    <hr>
+
+    <script>
+        //The module name is optional, bit it can be used like so if it's added
+        angular.module("myapp", [])  
+    .controller("HelloController", function($scope) {  
+        $scope.helloTo = {};  
+        $scope.helloTo.title = "World, AngularJS";  
+    }) 
+    .directive("wandasDirective",function(){
+        return {  
+        template : "This is a directive constructor. "  
+    };  
+    }); 
+
+    </script>
+</body>
+</html>
+<!--Stopped here: https://www.javatpoint.com/angularjs-ng-bind-html-directive-->
